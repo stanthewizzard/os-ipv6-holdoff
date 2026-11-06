@@ -1,11 +1,11 @@
 {
   "name": "os-ipv6-holdoff",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "origin": "opnsense/os-ipv6-holdoff",
   "comment": "CARP-aware public IPv6 prefix holdoff",
   "desc": "Local public IPv6 advertisement coordinator with a persistent service and observation mode.",
   "maintainer": "local@localhost",
-  "www": "https://opnsense.org/",
+  "www": "https://github.com/stanthewizzard/os-ipv6-holdoff",
   "prefix": "/usr/local",
   "licenselogic": "single",
   "licenses": [
@@ -14,7 +14,7 @@
   "annotations": {
     "product_id": "os-ipv6-holdoff",
     "product_name": "ipv6-holdoff",
-    "product_version": "0.1.7",
+    "product_version": "0.1.8",
     "product_tier": "3",
     "product_abi": "26.7",
     "product_arch": "amd64"
