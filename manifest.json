@@ -1,0 +1,34 @@
+{
+  "name": "os-ipv6-holdoff",
+  "version": "0.1.7",
+  "origin": "opnsense/os-ipv6-holdoff",
+  "comment": "CARP-aware public IPv6 prefix holdoff",
+  "desc": "Local public IPv6 advertisement coordinator with a persistent service and observation mode.",
+  "maintainer": "local@localhost",
+  "www": "https://opnsense.org/",
+  "prefix": "/usr/local",
+  "licenselogic": "single",
+  "licenses": [
+    "BSD2CLAUSE"
+  ],
+  "annotations": {
+    "product_id": "os-ipv6-holdoff",
+    "product_name": "ipv6-holdoff",
+    "product_version": "0.1.7",
+    "product_tier": "3",
+    "product_abi": "26.7",
+    "product_arch": "amd64"
+  },
+  "deps": {
+    "opnsense": {
+      "origin": "opnsense/opnsense",
+      "version": "26.7.8_2"
+    }
+  },
+  "scripts": {
+    "post-install": "/usr/local/bin/php /usr/local/opnsense/scripts/ipv6holdoff/register.php add\n/usr/local/etc/rc.d/configd restart\n/usr/local/etc/rc.d/ipv6holdoff start\n",
+    "pre-deinstall": "/usr/local/etc/rc.d/ipv6holdoff stop\n/usr/local/bin/php /usr/local/opnsense/scripts/ipv6holdoff/upstream.php restore\n/usr/local/bin/php /usr/local/opnsense/scripts/ipv6holdoff/register.php remove\n",
+    "post-deinstall": "/usr/local/etc/rc.d/configd restart\n",
+    "pre-install": "/usr/local/bin/python3 - <<'PY'\nimport os,pathlib\nif 'PKG_UPGRADE' in os.environ:\n p=pathlib.Path('/usr/local/opnsense/scripts/ipv6holdoff/upstream.php')\n if p.exists():\n  s=p.read_text()\n  if 'PKG_UPGRADE' not in s:p.write_text('<?php if (getenv(\"PKG_UPGRADE\") !== false) exit(0); ?>'+s)\nPY\n"
+  }
+}

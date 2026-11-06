@@ -1,0 +1,14 @@
+#!/bin/sh
+# PROVIDE: ipv6holdoff
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+. /etc/rc.subr
+name=ipv6holdoff
+rcvar=ipv6holdoff_enable
+pidfile=/var/run/ipv6holdoff.pid
+command=/usr/sbin/daemon
+command_args="-p ${pidfile} -f /usr/local/bin/python3 /usr/local/opnsense/scripts/ipv6holdoff/worker.py"
+procname=/usr/local/bin/python3
+ipv6holdoff_enable=YES
+load_rc_config "$name"
+run_rc_command "$1"

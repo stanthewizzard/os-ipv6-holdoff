@@ -1,0 +1,10 @@
+<model><mount>//OPNsense/IPv6Holdoff</mount><version>1.0.0</version><description>IPv6 public prefix holdoff</description><items><general>
+<enabled type="BooleanField"><Default>0</Default><Required>Y</Required></enabled>
+<observe type="BooleanField"><Default>1</Default><Required>Y</Required></observe>
+<role type="OptionField"><Default>secondary</Default><Required>Y</Required><OptionValues><primary>Preferred node</primary><secondary>Standby node</secondary></OptionValues></role>
+<delay type="IntegerField"><Default>600</Default><MinimumValue>60</MinimumValue><MaximumValue>3600</MaximumValue><Required>Y</Required></delay>
+<upstream type="InterfaceField"><Default>wan</Default><Required>Y</Required></upstream>
+<downstream type="InterfaceField"><Default>lan</Default><Required>Y</Required></downstream>
+<vhid type="IntegerField"><Default>30</Default><MinimumValue>1</MinimumValue><MaximumValue>255</MaximumValue><Required>Y</Required></vhid>
+<hostid type="TextField"><Default>f202</Default><Mask>/^[0-9a-fA-F]{1,4}$/</Mask><Required>Y</Required></hostid>
+</general></items></model>
